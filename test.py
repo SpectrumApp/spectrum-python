@@ -7,6 +7,7 @@ logger.setLevel(logging.DEBUG)
 spectrum = Spectrum('my-sub-level')
 logger.addHandler(spectrum)
 
-logger.info("informational blah")
-logger.warn("warning blah")
-logger.debug("debugging blah")
+for i in range(20):
+    logger.info("informational blah")
+    logger.warn("warning blah")
+    logger.debug("debugging blah")
