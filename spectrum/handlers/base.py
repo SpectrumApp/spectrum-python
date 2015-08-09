@@ -15,12 +15,15 @@ def cb(sess, resp):
 
 class BaseSpectrumHandler(logging.Handler):
 
-    def __init__(self, sublevel, url='http://127.0.0.1:9000'):
+    def __init__(self, sublevel=None, url='http://127.0.0.1:9000'):
         """ Setup """
         super(BaseSpectrumHandler, self).__init__()
         self.url = url
         self.sublevel = sublevel
         self.headers = {'content-type': 'application/json'}
+
+    def get_sub_level(self, record):
+        return self.sublevel
 
     def emit(self, record):
         """
@@ -31,7 +34,7 @@ class BaseSpectrumHandler(logging.Handler):
                 'id': str(uuid.uuid4().hex),
                 'timestamp': str(datetime.datetime.now()),
                 'level': record.levelname,
-                'sublevel': self.sublevel,
+                'sublevel': self.get_sub_level(record),
                 'message': record.getMessage(),
             }
 
