@@ -1,13 +1,10 @@
 import logging
-from spectrum.handlers import Spectrum, SpectrumModules
+from spectrum.handlers import Spectrum
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-#spectrum = Spectrum('my-sub-level')
-#logger.addHandler(spectrum)
-
-spectrum = SpectrumModules(levels=3)
+spectrum = Spectrum('my-sub-level')
 logger.addHandler(spectrum)
 
 for i in range(5):
