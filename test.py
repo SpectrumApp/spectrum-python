@@ -8,6 +8,6 @@ spectrum = Spectrum('my-sub-level')
 logger.addHandler(spectrum)
 
 for i in range(5):
-    logger.info("informational blah")
-    logger.warn("warning blah")
-    logger.debug("debugging blah")
+    logger.info("blah blah informational blah")
+    logger.warn("blah blah warning blah")
+    logger.debug("blah blah debugging blah")
