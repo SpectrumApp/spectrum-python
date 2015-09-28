@@ -15,12 +15,16 @@ def cb(sess, resp):
 
 class BaseSpectrumHandler(logging.Handler):
 
-    def __init__(self, sublevel=None, url='http://127.0.0.1:9000'):
+    def __init__(self, sublevel=None, *args, **kwargs):
         """ Setup """
-        super(BaseSpectrumHandler, self).__init__()
-        self.url = url
+        self.url = kwargs.pop('url', 'http://127.0.0.1:9000')
         self.sublevel = sublevel
+
+        if self.sublevel is None:
+            self.sublevel = 'None'
+
         self.headers = {'content-type': 'application/json'}
+        super(BaseSpectrumHandler, self).__init__(*args, **kwargs)
 
     def get_sub_level(self, record):
         return self.sublevel
