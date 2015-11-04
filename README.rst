@@ -3,7 +3,7 @@ spectrum-python
 
 ::
 
-    $ pip install spectrum
+    $ pip install spectrum-python
 
 Django
 ======
