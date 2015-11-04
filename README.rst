@@ -8,7 +8,7 @@ spectrum-python
 Django
 ======
 
-To direct all logging from your django project to Spectrum, you can use the
+To direct all logging from your Django project to Spectrum, you can use the
 predefined `FIRE_HOSE` logging configuration::
 
     # settings.py
