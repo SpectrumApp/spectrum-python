@@ -1,11 +1,16 @@
+spectrum-python
+---------------
+
+::
+
+    $ pip install spectrum
+
 Django
-------
+======
 
-::
+To direct all logging from your django project to Spectrum, you can use the
+predefined `FIRE_HOSE` logging configuration::
 
-    $ pip install spectrum[django]
-
-::
     # settings.py
 
     from spectrum.django import spectrum
