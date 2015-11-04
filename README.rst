@@ -15,3 +15,7 @@ predefined `FIRE_HOSE` logging configuration::
 
     from spectrum.django import spectrum
     LOGGING = spectrum.FIRE_HOSE
+
+If you use `celery`, you'll have one more setting to add::
+
+    CELERYD_HIJACK_ROOT_LOGGER = False
