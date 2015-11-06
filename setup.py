@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='spectrum-python',
-    version="0.0.1",
+    version="0.0.5",
     description='spectrum-python is a Python Logging Handler for Spectrum (devspectrum.com)',
     long_description='',
     author='Frank Wiles',
