@@ -1,0 +1,5 @@
+Originally created by Frank Wiles <frank@revsys.com>
+
+With contributions from:
+
+Flavio Curella <http://curella.org>
