@@ -4,8 +4,11 @@ import logging
 import uuid
 
 from requests_futures.sessions import FuturesSession
+from .silent import SilentExecutor
 
-session = FuturesSession()
+from ..conf import SPECTRUM_UUID4
+
+session = FuturesSession(executor=SilentExecutor(max_workers=2))
 
 
 def cb(sess, resp):
@@ -17,7 +20,7 @@ class BaseSpectrumHandler(logging.Handler):
 
     def __init__(self, sublevel=None, *args, **kwargs):
         """ Setup """
-        self.url = kwargs.pop('url', 'http://127.0.0.1:9000')
+        self.url = kwargs.pop('url', 'http://127.0.0.1:9000/?spectrum=%s' % SPECTRUM_UUID4)
         self.sublevel = sublevel
 
         if self.sublevel is None:
@@ -47,7 +50,6 @@ class BaseSpectrumHandler(logging.Handler):
                 'process': record.process,
                 'function': record.funcName,
             }
-
             session.post(
                 self.url,
                 data=json.dumps(data),
