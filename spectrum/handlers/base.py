@@ -40,6 +40,12 @@ class BaseSpectrumHandler(logging.Handler):
                 'level': record.levelname,
                 'sublevel': self.get_sub_level(record),
                 'message': record.getMessage(),
+                'filename': record.filename,
+                'path': record.pathname,
+                'line': record.lineno,
+                'process_name': record.processName,
+                'process': record.process,
+                'function': record.funcName,
             }
 
             session.post(
