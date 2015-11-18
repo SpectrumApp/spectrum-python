@@ -1,6 +1,11 @@
 import datetime
 import json
 import logging
+import socket
+try:
+    from urllib.parse import urlparse
+except ImportError:
+    from urlparse import urlparse
 import uuid
 
 from requests_futures.sessions import FuturesSession
@@ -9,6 +14,12 @@ from .silent import SilentExecutor
 from ..conf import SPECTRUM_UUID4
 
 session = FuturesSession(executor=SilentExecutor(max_workers=2))
+
+
+def is_port_open(hostname, port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = sock.connect_ex((hostname, port))
+    return result == 0
 
 
 def cb(sess, resp):
@@ -21,6 +32,8 @@ class BaseSpectrumHandler(logging.Handler):
     def __init__(self, sublevel=None, *args, **kwargs):
         """ Setup """
         self.url = kwargs.pop('url', 'http://127.0.0.1:9000/?spectrum=%s' % SPECTRUM_UUID4)
+
+        self.conn_info = urlparse(self.url)
         self.sublevel = sublevel
 
         if self.sublevel is None:
@@ -36,6 +49,9 @@ class BaseSpectrumHandler(logging.Handler):
         """
         Actually send the record to Spectrum over the REST interface
         """
+        if not is_port_open(self.conn_info.hostname, self.conn_info.port):
+            return
+
         try:
             data = {
                 'id': str(uuid.uuid4().hex),
