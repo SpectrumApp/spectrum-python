@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 import socket
+import time
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -16,10 +17,7 @@ from ..conf import SPECTRUM_UUID4
 session = FuturesSession(executor=SilentExecutor(max_workers=2))
 
 
-def is_port_open(hostname, port):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    result = sock.connect_ex((hostname, port))
-    return result == 0
+socket.setdefaulttimeout(0.1)
 
 
 def cb(sess, resp):
@@ -40,7 +38,24 @@ class BaseSpectrumHandler(logging.Handler):
             self.sublevel = 'None'
 
         self.headers = {'content-type': 'application/json'}
+
+        self._last_checked = time.time()
+        self._is_port_open = None
+
         super(BaseSpectrumHandler, self).__init__(*args, **kwargs)
+
+    def check_port(self, hostname, port):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        result = sock.connect_ex((hostname, port))
+        return result == 0
+
+    def is_port_open(self, hostname, port):
+        expired = (time.time() - self._last_checked) > 60
+        if expired or self._is_port_open is None:
+            self._is_port_open = self.check_port(hostname, port)
+            self._last_checked = time.time()
+
+        return self._is_port_open
 
     def get_sub_level(self, record):
         return self.sublevel
@@ -49,7 +64,8 @@ class BaseSpectrumHandler(logging.Handler):
         """
         Actually send the record to Spectrum over the REST interface
         """
-        if not is_port_open(self.conn_info.hostname, self.conn_info.port):
+
+        if not self.is_port_open(self.conn_info.hostname, self.conn_info.port):
             return
 
         try:
