@@ -3,6 +3,7 @@ import json
 import logging
 import socket
 import time
+import traceback
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -81,6 +82,7 @@ class BaseSpectrumHandler(logging.Handler):
                 'process_name': record.processName,
                 'process': record.process,
                 'function': record.funcName,
+                'traceback': traceback.format_exception(*record.exc_info) if record.exc_info else None,
             }
             session.post(
                 self.url,
