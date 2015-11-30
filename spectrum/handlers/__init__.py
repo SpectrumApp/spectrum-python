@@ -1,1 +1,1 @@
-from .base import Spectrum
+from .base import Spectrum, UDPSpectrum
