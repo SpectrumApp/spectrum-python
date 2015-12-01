@@ -1,6 +1,7 @@
 import datetime
 import json
 import logging
+import multiprocessing
 import socket
 import time
 import traceback
@@ -15,7 +16,8 @@ from .silent import SilentExecutor
 
 from ..conf import SPECTRUM_UUID4
 
-session = FuturesSession(executor=SilentExecutor(max_workers=2))
+cpus = multiprocessing.cpu_count()
+session = FuturesSession(executor=SilentExecutor(max_workers=cpus))
 
 
 socket.setdefaulttimeout(0.1)
