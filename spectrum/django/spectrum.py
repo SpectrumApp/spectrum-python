@@ -46,33 +46,28 @@ FIRE_HOSE = {
         },
         'root': {
             'level': 'DEBUG',
-            'class': 'spectrum.handlers.Spectrum',
+            'class': 'spectrum.handlers.UDPSpectrum',
             'sublevel': '',
-            'filters': ['request_id']
         },
         'django': {
             'level': 'DEBUG',
-            'class': 'spectrum.handlers.Spectrum',
+            'class': 'spectrum.handlers.UDPSpectrum',
             'sublevel': 'django',
-            'filters': ['request_id']
         },
         'django.request': {
             'level': 'DEBUG',
-            'class': 'spectrum.handlers.Spectrum',
+            'class': 'spectrum.handlers.UDPSpectrum',
             'sublevel': 'django.request',
-            'filters': ['request_id']
         },
         'celery': {
             'level': 'DEBUG',
-            'class': 'spectrum.handlers.Spectrum',
+            'class': 'spectrum.handlers.UDPSpectrum',
             'sublevel': 'celery',
-            'filters': ['request_id']
         },
         'django.db.backends': {
             'level': 'DEBUG',
-            'class': 'spectrum.handlers.Spectrum',
+            'class': 'spectrum.handlers.UDPSpectrum',
             'sublevel': 'django.db.backends',
-            'filters': ['request_id']
         },
     },
 }
