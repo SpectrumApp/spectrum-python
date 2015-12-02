@@ -1,1 +1,1 @@
-from .base import Spectrum
+from .rest import RestSpectrum
