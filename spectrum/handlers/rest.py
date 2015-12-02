@@ -38,7 +38,7 @@ class RestSpectrum(BaseSpectrumHandler):
         self._last_checked = time.time()
         self._is_port_open = None
 
-        super(RestSpectrum, self).__init__(*args, **kwargs)
+        super(RestSpectrum, self).__init__(sublevel, *args, **kwargs)
 
     def check_port(self, hostname, port):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -34,7 +34,7 @@ class UDPSpectrum(BaseSpectrumHandler):
         if self.sublevel is None:
             self.sublevel = 'None'
 
-        super(UDPSpectrum, self).__init__(*args, **kwargs)
+        super(UDPSpectrum, self).__init__(sublevel, *args, **kwargs)
 
     def emit(self, record):
 
