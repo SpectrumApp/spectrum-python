@@ -149,3 +149,77 @@ FIRE_HOSE_UDP = {
         },
     },
 }
+
+FIRE_HOSE_WS = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['console', 'root']
+    },
+    'filters': {
+        'request_id': {
+            '()': 'spectrum.filters.RequestIdFilter'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '[%(name)s][%(levelname)s] %(message)s'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['django'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['django.request'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['django.db.backends'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'celery': {
+            'handlers': ['celery'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+            'filters': ['request_id']
+        },
+        'root': {
+            'level': 'DEBUG',
+            'class': 'spectrum.handlers.WebsocketSpectrum',
+            'sublevel': '',
+        },
+        'django': {
+            'level': 'DEBUG',
+            'class': 'spectrum.handlers.WebsocketSpectrum',
+            'sublevel': 'django',
+        },
+        'django.request': {
+            'level': 'DEBUG',
+            'class': 'spectrum.handlers.WebsocketSpectrum',
+            'sublevel': 'django.request',
+        },
+        'celery': {
+            'level': 'DEBUG',
+            'class': 'spectrum.handlers.WebsocketSpectrum',
+            'sublevel': 'celery',
+        },
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'class': 'spectrum.handlers.WebsocketSpectrum',
+            'sublevel': 'django.db.backends',
+        },
+    },
+}
