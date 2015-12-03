@@ -30,7 +30,9 @@ class RestSpectrum(BaseSpectrumHandler):
 
     def __init__(self, sublevel=None, *args, **kwargs):
         """ Setup """
-        self.url = kwargs.pop('url', 'http://127.0.0.1:9000/?spectrum=%s' % SPECTRUM_UUID4)
+        url = kwargs.pop('url', 'http://127.0.0.1:9000/')
+
+        self.url = '%s?spectrum=%s' % (url, SPECTRUM_UUID4)
 
         self.conn_info = urlparse(self.url)
         self.headers = {'content-type': 'application/json'}
