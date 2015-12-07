@@ -18,7 +18,7 @@ class BaseSpectrumHandler(logging.Handler):
 
     def build_message(self, record):
         return {
-            'id': str(uuid.uuid4().hex),
+            'id': uuid.uuid4().hex,
             'timestamp': str(datetime.datetime.now()),
             'level': record.levelname,
             'sublevel': self.get_sub_level(record),
