@@ -36,12 +36,25 @@ Setting up a logging handler is also equally easy::
         logger.warn("This would be sent as WARNING.my-logging-sublevel")
         logger.debug("This would be sent as DEBUG.my-logging-sublevel")
 
+Options
+-------
+
+url
+~~~
+
+IP and PORT of the REST API to use.  Defaults to 'http://0.0.0.0:9000'.  You must override this to the proper Spectrum port associated to your stream if using more than one REST API Stream
+
+sublevel
+~~~~~~~~
+
+Optional sub-level to use for this handler.  Defaults to '<untitled>' in the Spectrum UI if not given.
+
 
 Django
 ======
 
 To direct all logging from your Django project to Spectrum, you can use the
-predefined `FIRE_HOSE` logging configuration::
+predefined `FIRE_HOSE` logging configuration in your settings::
 
     # settings.py
 
