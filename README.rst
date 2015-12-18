@@ -58,9 +58,26 @@ predefined `FIRE_HOSE` logging configuration in your settings::
 
     # settings.py
 
-    from spectrum.django import spectrum
-    LOGGING = spectrum.FIRE_HOSE
+    from spectrum.django import FIRE_HOSE
+    LOGGING = FIRE_HOSE
 
 If you use `celery`, you'll have one more setting to add::
 
     CELERYD_HIJACK_ROOT_LOGGER = False
+
+You can also use the ``fire_hose`` convenience method to quickly modify any of
+the pre-built logging configuration dict::
+
+        from spectrum.django import fire_hose
+
+
+        LOGGING = fire_hose()
+
+        LOGGING = fire_hose(log_db=False)
+
+        LOGGING = fire_hose(levels=(
+            ('my.overly.verbose.module', 'WARNING'),
+            ('some.other.module', 'CRITICAL'),
+        )
+
+        LOGGING = fire_hose(handler_kwargs={'url': '127.0.0.1:12345'})
