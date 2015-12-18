@@ -16,7 +16,7 @@ setup(
     include_package_data=True,
     packages=find_packages(),
     zip_safe=False,
-    install_requires=['requests-futures==0.9.5'],
+    install_requires=['requests-futures==0.9.5', "autobahn[asyncio]"],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
