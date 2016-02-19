@@ -16,7 +16,7 @@ class UDPSpectrum(BaseSpectrumHandler):
     preamble = json.dumps({
         "index": 0,
         "total": 1,
-        'id': str(uuid.uuid4().hex),
+        'id': str(uuid.uuid1().hex),
     })
 
     MAX_DATA_LENGTH = MAX_LENGTH - len(preamble)

@@ -7,7 +7,7 @@ f.close()
 
 setup(
     name='spectrum-python',
-    version="0.9.6",
+    version="0.9.7",
     description='spectrum-python is a Python Logging Handler for Spectrum (devspectrum.com)',
     long_description=readme,
     author='Frank Wiles',
