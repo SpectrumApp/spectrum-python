@@ -103,5 +103,5 @@ If you prefer a more granular approach, you can configure specific handlers::
         }
     }
 
-Make sure you include the ``request_id`` filter to filter our spectrum's own requests from the other. Otherwise, Spectrum's requests will be logged by Python, and those logs will in turn generate their own Spectrum request, causing and infinite recursion.
+Make sure you include the ``request_id`` filter to filter out spectrum's own requests from the other. Otherwise, Spectrum's requests will be logged by Python, and those logs will in turn generate their own Spectrum request, causing and infinite recursion.
 
