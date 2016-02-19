@@ -81,3 +81,24 @@ the pre-built logging configuration dict::
         )
 
         LOGGING = fire_hose(handler_kwargs={'url': '127.0.0.1:12345'})
+
+If you prefer a more granular approach, you can configure specific handlers::
+
+    # settings.py
+
+    LOGGING = {
+        ...
+        'filters': {
+            'request_id': {
+                '()': 'spectrum.filters.RequestIdFilter'
+            }
+        },
+        'handlers': {
+            'myloggername': {
+                'level': 'DEBUG',
+                'class': 'spectrum.handlers.RestSpectrum',
+                'sublevel': 'myloggername',
+                'filters': ['request_id']
+            }
+        }
+    }
