@@ -1,4 +1,8 @@
 from .rest import RestSpectrum
 from .rest import RestSpectrum as Spectrum
 from .udp import UDPSpectrum
-from .websocket import WebsocketSpectrum
+
+try:
+    from .websocket import WebsocketSpectrum
+except ImportError:
+    WebsocketSpectrum = None
