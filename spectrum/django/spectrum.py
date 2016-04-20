@@ -47,7 +47,6 @@ FIRE_HOSE = {
         'root': {
             'level': 'DEBUG',
             'class': 'spectrum.handlers.RestSpectrum',
-            'sublevel': '',
             'filters': ['request_id']
         },
         'django': {
@@ -125,7 +124,6 @@ FIRE_HOSE_UDP = {
         'root': {
             'level': 'DEBUG',
             'class': 'spectrum.handlers.UDPSpectrum',
-            'sublevel': '',
         },
         'django': {
             'level': 'DEBUG',
@@ -199,7 +197,6 @@ FIRE_HOSE_WS = {
         'root': {
             'level': 'DEBUG',
             'class': 'spectrum.handlers.WebsocketSpectrum',
-            'sublevel': '',
         },
         'django': {
             'level': 'DEBUG',
