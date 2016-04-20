@@ -60,4 +60,4 @@ class UDPSpectrum(BaseSpectrumHandler):
             self.post(message)
 
     def post(self, message):
-        self.sock.sendall(json.dumps(message))
+        self.sock.sendall(json.dumps(message).encode('utf8'))
