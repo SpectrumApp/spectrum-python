@@ -8,13 +8,13 @@ class BaseSpectrumHandler(logging.Handler):
     def __init__(self, sublevel=None, *args, **kwargs):
         self.sublevel = sublevel
 
-        if self.sublevel is None:
-            self.sublevel = 'None'
-
         super(BaseSpectrumHandler, self).__init__(*args, **kwargs)
 
     def get_sub_level(self, record):
-        return self.sublevel
+        if self.sublevel is not None:
+            return self.sublevel
+        else:
+            return record.name
 
     def build_message(self, record):
         return {

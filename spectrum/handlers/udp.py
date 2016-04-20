@@ -29,11 +29,6 @@ class UDPSpectrum(BaseSpectrumHandler):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.connect((self.UDP_IP, self.UDP_PORT))
 
-        self.sublevel = sublevel
-
-        if self.sublevel is None:
-            self.sublevel = 'None'
-
         super(UDPSpectrum, self).__init__(sublevel, *args, **kwargs)
 
     def emit(self, record):
