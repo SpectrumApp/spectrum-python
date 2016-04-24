@@ -7,7 +7,7 @@ f.close()
 
 setup(
     name='spectrum-python',
-    version="0.9.7",
+    version="0.9.8",
     description='spectrum-python is a Python Logging Handler for Spectrum (devspectrum.com)',
     long_description=readme,
     author='Frank Wiles',
@@ -18,7 +18,7 @@ setup(
     zip_safe=False,
     install_requires=['requests-futures==0.9.5', "autobahn[asyncio]"],
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
