@@ -2,6 +2,13 @@
 spectrum-python
 ===============
 
+
+UPDATE
+======
+
+Spectrum has been discontinued and is no longer in development.  Please contact us at https://revsys.com if you have any questions or concerns.
+Thanks! 
+
 Overview
 ========
 
